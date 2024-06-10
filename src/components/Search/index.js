@@ -8,11 +8,23 @@ export default function Search() {
     `https://freesound.org/apiv2/search/text/?query=${searchTerm}&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
   );
 
-  const searchForSounds = async (event) => {
+  async function previewSound(id) {
+    console.log("previewData", id);
+    const result = await fetch(
+      `https://freesound.org/apiv2/sounds/${id}/?token=${process.env.NEXT_PUBLIC_API_TOKEN}`
+    );
+    const preview = await result.json();
+    const previewURL = preview.previews["preview-hq-mp3"];
+    const previewPlayer = new Audio(previewURL);
+    previewPlayer.play();
+    console.log("preview url", previewURL);
+  }
+
+  async function searchForSounds(event) {
     event.preventDefault();
     setSearchTerm(event.target[0].value);
     event.target.reset();
-  };
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -32,9 +44,18 @@ export default function Search() {
       </form>
       <ul>
         {searchResults.map((searchResult) => (
-          <li key={data.id}>
-            {searchResult ? searchResult.name : "No results"}
-          </li>
+          <>
+            <li key={searchResult.id}>
+              {searchResult ? searchResult.name : "No results"}
+            </li>
+            <button
+              key={`preview-${searchResult.id}`}
+              className="preview-button"
+              onClick={() => previewSound(searchResult.id)}
+            >
+              preview
+            </button>
+          </>
         ))}
       </ul>
     </>
