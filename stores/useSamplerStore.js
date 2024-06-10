@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { useData } from "../utils/useData.js";
 
 export const useSamplerStore = create((set) => ({
-  defaultSamples: [
+  audioSamples: [
     "samples/MR16_BD_02_T1S.wav",
     "samples/MR16_HH_C2A.wav",
     "samples/MR16_Cabasa_X1_st.wav",
@@ -13,10 +13,11 @@ export const useSamplerStore = create((set) => ({
     "samples/MR16_Cow_C2A.wav",
     "samples/MR16_Cym_T1A.wav",
   ],
+
   updateSample: (index, newSample) =>
     set(
       produce((state) => {
-        state.defaultSamples[index] = newSample;
+        state.audioSamples[index] = newSample;
         return state;
       })
     ),

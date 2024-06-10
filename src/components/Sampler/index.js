@@ -2,11 +2,11 @@ import SamplePad from "../Sample Pad";
 import { useSamplerStore } from "../../../stores/useSamplerStore";
 
 export default function Sampler() {
-  const defaultSamples = useSamplerStore((state) => state.defaultSamples);
+  const audioSamples = useSamplerStore((state) => state.audioSamples);
 
   return (
     <div className="sample-pad-container">
-      {defaultSamples.map((sample, index) => (
+      {audioSamples.map((sample, index) => (
         <SamplePad key={index} sample={sample} />
       ))}
     </div>

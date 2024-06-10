@@ -31,8 +31,14 @@ export default function Search() {
   }
 
   if (isError) {
-    return <div>Error: {isError.message}</div>;
+    console.error("error");
+    return;
   }
+
+  function handleDrag(event, name) {
+    event.dataTransfer.setData("name", name);
+  }
+
   const searchResults = data.results;
   console.log("search results", searchResults);
 
@@ -45,8 +51,12 @@ export default function Search() {
       <ul>
         {searchResults.map((searchResult) => (
           <>
-            <li key={searchResult.id}>
-              {searchResult ? searchResult.name : "No results"}
+            <li
+              key={searchResult.id}
+              draggable
+              onDragStart={(event) => handleDrag(event, searchResult.name)}
+            >
+              {searchResult.name}
             </li>
             <button
               key={`preview-${searchResult.id}`}
