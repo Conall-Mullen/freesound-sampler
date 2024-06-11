@@ -17,7 +17,6 @@ export default function Search() {
     const previewURL = preview.previews["preview-hq-mp3"];
     const previewPlayer = new Audio(previewURL);
     previewPlayer.play();
-    console.log("preview url", previewURL);
   }
 
   async function searchForSounds(event) {
@@ -31,10 +30,16 @@ export default function Search() {
   }
 
   if (isError) {
-    return <div>Error: {isError.message}</div>;
+    console.error("error");
+    return;
   }
+
+  function handleDrag(event, id) {
+    console.log("result", id);
+    event.dataTransfer.setData("id", id);
+  }
+
   const searchResults = data.results;
-  console.log("search results", searchResults);
 
   return (
     <>
@@ -45,8 +50,12 @@ export default function Search() {
       <ul>
         {searchResults.map((searchResult) => (
           <>
-            <li key={searchResult.id}>
-              {searchResult ? searchResult.name : "No results"}
+            <li
+              key={searchResult.id}
+              draggable
+              onDragStart={(event) => handleDrag(event, searchResult.id)}
+            >
+              {searchResult.name}
             </li>
             <button
               key={`preview-${searchResult.id}`}
