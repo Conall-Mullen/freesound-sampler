@@ -1,5 +1,6 @@
 import SamplePad from "../Sample Pad";
 import { useSamplerStore } from "../../../stores/useSamplerStore";
+import useSWR from "swr";
 
 export default function Sampler() {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
