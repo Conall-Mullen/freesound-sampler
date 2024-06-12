@@ -7,9 +7,14 @@ export default function Home() {
   const { data: session, status } = useSession();
   return (
     <>
-      <LoginButton />
-      <Sampler />
-      <Search />
+      {!session && <LoginButton />}
+      {session && (
+        <>
+          <LoginButton />
+          <Sampler />
+          <Search />
+        </>
+      )}
     </>
   );
 }
