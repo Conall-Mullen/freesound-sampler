@@ -21,9 +21,6 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     async session({ session, user }) {
-      // Log the user and session objects
-
-      // Add user details to the session object
       session.user.userId = user.id;
       session.user.name = user.name;
       session.user.email = user.email;
