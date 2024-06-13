@@ -1,11 +1,25 @@
 import { useSamplerStore } from "../../../stores/useSamplerStore";
+import { useData } from "../../../utils/useData";
 export default function SaveButton() {
   const seen = useSamplerStore((state) => state.seen);
   const updateSeen = useSamplerStore((state) => state.updateSeen);
+  const audioSamples = useSamplerStore((state) => state.audioSamples);
 
-  function savePatch(event) {
+  async function savePatch(event) {
     event.preventDefault();
-    console.log(event.target[0].value);
+    console.dir(event.target);
+    const saveData = {
+      name: event.target[0].value,
+      audioSources: audioSamples,
+    };
+    const response = await fetch("/api/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(saveData),
+    });
+
     event.target.reset();
     updateSeen(!seen);
   }
