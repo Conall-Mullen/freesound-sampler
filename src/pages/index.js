@@ -1,11 +1,10 @@
 import { useSamplerStore } from "../../stores/useSamplerStore";
 import LoginButton from "../components/LoginButton";
+import Mixer from "../components/Mixer";
 import Sampler from "../components/Sampler";
 import SaveButton from "../components/SaveButton";
 import Search from "../components/Search";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
-import { useStore } from "zustand";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -23,6 +22,7 @@ export default function Home() {
           {seen ? <SaveButton /> : null}
           <Sampler />
           <Search />
+          <Mixer />
         </>
       )}
     </>

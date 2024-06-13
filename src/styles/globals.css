@@ -48,3 +48,19 @@ form {
   grid-template-columns: repeat(4, 1fr);
   gap: 2em;
 }
+.volume-fader {
+  display: flex;
+  flex-direction: column;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  appearance: slider-vertical;
+  height: 325px;
+  width: 16px;
+  vertical-align: bottom;
+}
+
+.volume-fader-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2em;
+}
