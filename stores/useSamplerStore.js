@@ -13,7 +13,6 @@ export const useSamplerStore = create((set) => ({
     "samples/MR16_Cow_C2A.wav",
     "samples/MR16_Cym_T1A.wav",
   ],
-
   updateSample: (index, newSample) =>
     set(
       produce((state) => {
@@ -21,4 +20,6 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
+  seen: false,
+  updateSeen: () => set((state) => ({ seen: !state.seen })),
 }));

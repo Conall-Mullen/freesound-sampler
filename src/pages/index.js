@@ -1,10 +1,17 @@
+import { useSamplerStore } from "../../stores/useSamplerStore";
 import LoginButton from "../components/LoginButton";
 import Sampler from "../components/Sampler";
+import SaveButton from "../components/SaveButton";
 import Search from "../components/Search";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { useStore } from "zustand";
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const seen = useSamplerStore((state) => state.seen);
+  const updateSeen = useSamplerStore((state) => state.updateSeen);
+
   return (
     <>
       <h1>Freesound Sampler</h1>
@@ -12,6 +19,8 @@ export default function Home() {
       {session && (
         <>
           <LoginButton />
+          <button onClick={() => updateSeen(!seen)}>save patch?</button>
+          {seen ? <SaveButton /> : null}
           <Sampler />
           <Search />
         </>
