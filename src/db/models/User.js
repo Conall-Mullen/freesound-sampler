@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 const patchSchema = new Schema({
   name: { type: String, required: false },
   audioSources: { type: Array, required: false },
+  faderVolume: { type: Array, required: false },
 });
 const userSchema = new Schema({
   name: { type: String, required: false },

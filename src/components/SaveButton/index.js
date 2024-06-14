@@ -4,6 +4,7 @@ export default function SaveButton() {
   const seen = useSamplerStore((state) => state.seen);
   const updateSeen = useSamplerStore((state) => state.updateSeen);
   const audioSamples = useSamplerStore((state) => state.audioSamples);
+  const sampleVolume = useSamplerStore((state) => state.sampleVolume);
 
   async function savePatch(event) {
     event.preventDefault();
@@ -11,6 +12,7 @@ export default function SaveButton() {
     const saveData = {
       name: event.target[0].value,
       audioSources: audioSamples,
+      faderVolume: sampleVolume,
     };
     const response = await fetch("/api/users/", {
       method: "POST",
