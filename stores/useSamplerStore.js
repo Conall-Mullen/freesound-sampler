@@ -20,6 +20,16 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
+
+  sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
+  updateSampleVolume: (index, volume) =>
+    set(
+      produce((state) => {
+        state.sampleVolume[index] = volume;
+        return state;
+      })
+    ),
+
   seen: false,
   updateSeen: () => set((state) => ({ seen: !state.seen })),
 }));
