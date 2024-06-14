@@ -4,26 +4,36 @@ import Mixer from "../components/Mixer";
 import Sampler from "../components/Sampler";
 import SaveButton from "../components/SaveButton";
 import Search from "../components/Search";
+import Tabs from "../components/Tabs";
+import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const seen = useSamplerStore((state) => state.seen);
-  const updateSeen = useSamplerStore((state) => state.updateSeen);
+
+  const viewMixer = useSamplerStore((state) => state.viewMixer);
 
   return (
     <>
-      <h1>Freesound Sampler</h1>
+      <a href="https://freesound.org/">
+        <Image
+          src="/icons/Freesound_project_website_logo.png"
+          alt="freesound-logo"
+          width="270"
+          height="94"
+        ></Image>
+      </a>
+
       {!session && <LoginButton />}
       {session && (
-        <>
+        <div className="home-page-container">
           <LoginButton />
-          <button onClick={() => updateSeen(!seen)}>save patch?</button>
-          {seen ? <SaveButton /> : null}
+
           <Sampler />
-          <Search />
-          <Mixer />
-        </>
+          <Tabs />
+
+          {viewMixer ? <Mixer /> : null}
+        </div>
       )}
     </>
   );

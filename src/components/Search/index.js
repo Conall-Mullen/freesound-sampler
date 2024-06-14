@@ -43,7 +43,7 @@ export default function Search() {
 
   return (
     <>
-      <form onSubmit={searchForSounds}>
+      <form onSubmit={searchForSounds} className="search-bar">
         <input type="text"></input>
         <button>search</button>
       </form>

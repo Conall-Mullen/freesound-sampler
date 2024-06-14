@@ -30,6 +30,14 @@ export const useSamplerStore = create((set) => ({
       })
     ),
 
-  seen: false,
-  updateSeen: () => set((state) => ({ seen: !state.seen })),
+  viewSaveButton: false,
+  updateViewSaveButton: () =>
+    set((state) => ({ viewSaveButton: !state.viewSaveButton })),
+
+  viewSearchBar: false,
+  updateViewSearchBar: () =>
+    set((state) => ({ viewSearchBar: !state.viewSearchBar })),
+
+  viewMixer: false,
+  updateViewMixer: () => set((state) => ({ viewMixer: !state.viewMixer })),
 }));

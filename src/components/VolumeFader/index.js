@@ -7,7 +7,6 @@ export default function VolumeFader({ sample }) {
   );
   const sampleVolume = useSamplerStore((state) => state.sampleVolume);
   function moveFader(event) {
-    // console.dir(`set ${sample} volume to ${event.target.value / 100}`);
     audioSamples.forEach((audioSample, index) => {
       if (audioSample === sample) {
         updateSampleVolume(index, event.target.value / 100);
@@ -17,7 +16,12 @@ export default function VolumeFader({ sample }) {
   }
   return (
     <>
-      <input type="range" className="volume-fader" onChange={moveFader}></input>
+      <input
+        type="range"
+        className="volume-fader"
+        onChange={moveFader}
+        defaultValue="100"
+      ></input>
     </>
   );
 }

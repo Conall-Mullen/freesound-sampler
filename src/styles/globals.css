@@ -1,20 +1,32 @@
 * {
   font-family: Helvetica;
 }
-.fader {
-  appearance: none;
-  border-radius: 10px;
-  margin: 1em;
-  padding: 2px;
-  background: #b0b0b0;
-  width: 5px;
-  height: 200px;
-  writing-mode: vertical-lr;
-  direction: rtl;
-}
 
 li {
   list-style-type: none;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.tabs-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tab-button {
+  width: 3em;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #555555;
+  border: 0;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .search_result_container {
@@ -45,22 +57,43 @@ form {
 
 .sample-pad-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2em;
+  grid-template-columns: repeat(4, 0.1fr);
+  gap: 1em;
+  justify-items: center;
+  margin: auto;
 }
 .volume-fader {
+  appearance: none;
   display: flex;
   flex-direction: column;
   writing-mode: vertical-lr;
   direction: rtl;
-  appearance: slider-vertical;
   height: 325px;
-  width: 16px;
+  width: 1em;
   vertical-align: bottom;
+  border-radius: 10px;
+  margin: 1em;
+  padding: 2px;
+  background: #b0b0b0;
 }
 
 .volume-fader-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 2em;
+  grid-template-columns: repeat(8, 0.4fr);
+  gap: 1px;
+  justify-items: center;
+}
+
+.volume-fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1em;
+  height: 2.5em;
+  border-radius: 5px;
+  background-color: #393939;
+  overflow: visible;
+  cursor: pointer;
+}
+.home-page-container {
+  display: flex;
+  flex-direction: column;
 }

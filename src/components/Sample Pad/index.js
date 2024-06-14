@@ -55,9 +55,7 @@ export default function SamplePad({ sample }) {
         onClick={playSample}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
-      >
-        {sample}
-      </button>
+      ></button>
     </>
   );
 }
