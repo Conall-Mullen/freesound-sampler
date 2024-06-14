@@ -6,9 +6,13 @@ import { produce } from "immer";
 export default function SamplePad({ sample }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
   const updateSample = useSamplerStore((state) => state.updateSample);
+  const sampleVolume = useSamplerStore((state) => state.sampleVolume);
+
+  const audioPlayer = new Audio(sample);
+  const sampleIndex = audioSamples.indexOf(sample);
+  audioPlayer.volume = sampleVolume[sampleIndex];
 
   function playSample() {
-    const audioPlayer = new Audio(sample);
     audioPlayer.play();
   }
   function handleDragOverSample(event) {
