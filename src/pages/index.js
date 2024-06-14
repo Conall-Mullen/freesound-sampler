@@ -2,8 +2,6 @@ import { useSamplerStore } from "../../stores/useSamplerStore";
 import LoginButton from "../components/LoginButton";
 import Mixer from "../components/Mixer";
 import Sampler from "../components/Sampler";
-import SaveButton from "../components/SaveButton";
-import Search from "../components/Search";
 import Tabs from "../components/Tabs";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
