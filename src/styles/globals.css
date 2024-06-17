@@ -1,5 +1,5 @@
 * {
-  font-family: Helvetica;
+  font-family: Helvetica, sans-serif;
 }
 
 li {
@@ -84,7 +84,20 @@ form {
   margin: auto;
 }
 
+.volume-fader-container {
+  display: grid;
+  grid-template-columns: repeat(8, 0.4fr);
+  grid-gap: 1px;
+  gap: 1px;
+  padding: 0;
+  width: 75%;
+  margin: auto;
+  margin-top: 5%;
+  justify-items: center;
+}
 .volume-fader {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   display: flex;
   flex-direction: column;
@@ -94,25 +107,17 @@ form {
   width: 1em;
   vertical-align: bottom;
   border-radius: 10px;
-  margin: 1em;
-  padding: 2px;
+  margin: 0;
+  padding: 0px;
   background: #b0b0b0;
 }
-
-.volume-fader-container {
-  display: grid;
-  grid-template-columns: repeat(8, 0.4fr);
-  gap: 1px;
-  justify-items: center;
-}
-
 .volume-fader::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 1em;
-  height: 2.5em;
+
+  padding: 2em;
+  height: 1em;
   border-radius: 5px;
   background-color: #393939;
-  overflow: visible;
   cursor: pointer;
 }
 .home-page-container {

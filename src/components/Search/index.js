@@ -4,7 +4,7 @@ import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Search() {
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { data, isLoading, isError } = useData(
     `https://freesound.org/apiv2/search/text/?query=${searchTerm}=&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
