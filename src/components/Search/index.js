@@ -1,6 +1,7 @@
 import { useSamplerStore } from "../../../stores/useSamplerStore";
 import { useData } from "../../../utils/useData.js";
 import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState();
@@ -38,6 +39,9 @@ export default function Search() {
     console.log("result", id);
     event.dataTransfer.setData("id", id);
   }
+  function handleScroll(event) {
+    console.log("Scroll position:", event.target.scrollTop);
+  }
 
   const searchResults = data.results;
 
@@ -47,7 +51,7 @@ export default function Search() {
         <input type="text"></input>
         <button>search</button>
       </form>
-      <ul>
+      <InfiniteScroll dataLength={searchResults.length}>
         {searchResults.map((searchResult) => (
           <>
             <li
@@ -78,7 +82,7 @@ export default function Search() {
             </li>
           </>
         ))}
-      </ul>
+      </InfiniteScroll>
     </>
   );
 }

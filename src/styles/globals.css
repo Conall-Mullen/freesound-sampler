@@ -13,7 +13,9 @@ li {
   border-radius: 10px;
 }
 ul {
+  overflow-y: scroll;
   padding: 0;
+  list-style-type: none;
 }
 .login {
   display: flex;
@@ -50,13 +52,6 @@ ul {
 .search-bar {
   display: flex;
   justify-content: flex-start;
-}
-
-.search_result_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: px;
 }
 
 form {

@@ -12,6 +12,7 @@ export default function Tabs() {
   const viewSearchBar = useSamplerStore((state) => state.viewSearchBar);
   const viewMixer = useSamplerStore((state) => state.viewMixer);
   const viewSaveButton = useSamplerStore((state) => state.viewSaveButton);
+
   return (
     <div className="tabs-container">
       <button
