@@ -45,6 +45,8 @@ export default function SamplePad({ sample }) {
     );
     const preview = await result.json();
     const previewURL = await preview.previews["preview-hq-mp3"];
+    const previewImage = await preview.images.waveform_m;
+    console.log(preview);
     return previewURL;
   }
 

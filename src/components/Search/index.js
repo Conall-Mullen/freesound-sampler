@@ -5,8 +5,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState();
+
   const { data, isLoading, isError } = useData(
-    `https://freesound.org/apiv2/search/text/?query=${searchTerm}&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
+    `https://freesound.org/apiv2/search/text/?query=${searchTerm}=&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
   );
 
   async function previewSound(id) {
@@ -47,15 +48,18 @@ export default function Search() {
 
   return (
     <>
-      <form onSubmit={searchForSounds} className="search-bar">
+      <form onSubmit={searchForSounds}>
         <input type="text"></input>
         <button>search</button>
       </form>
-      <InfiniteScroll dataLength={searchResults.length}>
-        {searchResults.map((searchResult) => (
+      <InfiniteScroll
+        dataLength={searchResults.length}
+        className="search-results"
+      >
+        {searchResults.map((searchResult, index) => (
           <>
             <li
-              key={searchResult.id}
+              key={index}
               draggable
               onDragStart={(event) => handleDrag(event, searchResult.id)}
             >

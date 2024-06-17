@@ -12,10 +12,13 @@ li {
   padding: 2%;
   border-radius: 10px;
 }
-ul {
+.search-results {
   overflow-y: scroll;
   padding: 0;
-  list-style-type: none;
+  position: absolute;
+  overflow-x: hidden;
+  max-height: 400px;
+  width: 300px;
 }
 .login {
   display: flex;
@@ -80,6 +83,7 @@ form {
   justify-items: center;
   margin: auto;
 }
+
 .volume-fader {
   appearance: none;
   display: flex;
