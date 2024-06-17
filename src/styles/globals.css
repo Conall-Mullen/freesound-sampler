@@ -1,7 +1,9 @@
 * {
   font-family: Helvetica, sans-serif;
 }
-
+h1 {
+  text-align: center;
+}
 li {
   list-style-type: none;
   display: flex;
@@ -27,7 +29,7 @@ li {
 }
 .login-button {
   width: 3em;
-  height: 50px;
+  height: 3em;
   border-radius: 10px;
   background-color: #555555;
   border: 0;
@@ -40,7 +42,7 @@ li {
 }
 .tab-button {
   width: 3em;
-  height: 50px;
+  height: 3em;
   border-radius: 10px;
   background-color: #555555;
   border: 0;
@@ -72,8 +74,8 @@ form {
   background-color: #555555;
   cursor: pointer;
   transition: border-color 0.2s;
-  height: 16em;
-  width: 16em;
+  height: 12em;
+  width: 12em;
 }
 
 .sample-pad-container {

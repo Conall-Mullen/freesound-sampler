@@ -15,7 +15,7 @@ export default async function handler(request, response) {
     if (!users) {
       return response.status(404).json({ status: "Not Found" });
     }
-    console.log(users);
+    console.log("Users", users);
     return response.status(200).json(users);
   }
   if (request.method === "POST") {
