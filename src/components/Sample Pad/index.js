@@ -45,6 +45,7 @@ export default function SamplePad({ sample }) {
     );
     const preview = await result.json();
     const previewURL = await preview.previews["preview-hq-mp3"];
+    console.log(preview);
     return previewURL;
   }
 
@@ -55,9 +56,7 @@ export default function SamplePad({ sample }) {
         onClick={playSample}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
-      >
-        {sample}
-      </button>
+      ></button>
     </>
   );
 }

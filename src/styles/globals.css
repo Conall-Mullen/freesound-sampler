@@ -1,27 +1,60 @@
 * {
-  font-family: Helvetica;
-}
-.fader {
-  appearance: none;
-  border-radius: 10px;
-  margin: 1em;
-  padding: 2px;
-  background: #b0b0b0;
-  width: 5px;
-  height: 200px;
-  writing-mode: vertical-lr;
-  direction: rtl;
+  font-family: Helvetica, sans-serif;
 }
 
 li {
   list-style-type: none;
-}
-
-.search_result_container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 5px;
+  background-color: #b0b0b0;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+}
+.search-results {
+  overflow-y: scroll;
+  padding: 0;
+  position: absolute;
+  overflow-x: hidden;
+  max-height: 400px;
+  width: 300px;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.login-button {
+  width: 3em;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #555555;
+  border: 0;
+}
+.tabs-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tab-button {
+  width: 3em;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #555555;
+  border: 0;
+}
+.preview-button {
+  width: 3em;
+  height: 3em;
+  border-radius: 50px;
+  background-color: #00000000;
+  border: 0;
+}
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
 }
 
 form {
@@ -45,22 +78,49 @@ form {
 
 .sample-pad-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2em;
-}
-.volume-fader {
-  display: flex;
-  flex-direction: column;
-  writing-mode: vertical-lr;
-  direction: rtl;
-  appearance: slider-vertical;
-  height: 325px;
-  width: 16px;
-  vertical-align: bottom;
+  grid-template-columns: repeat(4, 0.1fr);
+  gap: 1em;
+  justify-items: center;
+  margin: auto;
 }
 
 .volume-fader-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 2em;
+  grid-template-columns: repeat(8, 0.4fr);
+  grid-gap: 1px;
+  gap: 1px;
+  padding: 0;
+  width: 75%;
+  margin: auto;
+  margin-top: 5%;
+  justify-items: center;
+}
+.volume-fader {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  height: 325px;
+  width: 1em;
+  vertical-align: bottom;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0px;
+  background: #b0b0b0;
+}
+.volume-fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  padding: 2em;
+  height: 1em;
+  border-radius: 5px;
+  background-color: #393939;
+  cursor: pointer;
+}
+.home-page-container {
+  display: flex;
+  flex-direction: column;
 }

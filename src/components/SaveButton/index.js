@@ -1,8 +1,10 @@
 import { useSamplerStore } from "../../../stores/useSamplerStore";
 import { useData } from "../../../utils/useData";
 export default function SaveButton() {
-  const seen = useSamplerStore((state) => state.seen);
-  const updateSeen = useSamplerStore((state) => state.updateSeen);
+  const viewSaveButton = useSamplerStore((state) => state.viewSaveButton);
+  const updateViewSaveButton = useSamplerStore(
+    (state) => state.updateViewSaveButton
+  );
   const audioSamples = useSamplerStore((state) => state.audioSamples);
   const sampleVolume = useSamplerStore((state) => state.sampleVolume);
 
@@ -23,7 +25,7 @@ export default function SaveButton() {
     });
 
     event.target.reset();
-    updateSeen(!seen);
+    updateViewSaveButton(!viewSaveButton);
   }
   return (
     <>

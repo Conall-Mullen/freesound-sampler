@@ -1,11 +1,13 @@
 import { useSamplerStore } from "../../../stores/useSamplerStore";
 import { useData } from "../../../utils/useData.js";
 import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Search() {
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+
   const { data, isLoading, isError } = useData(
-    `https://freesound.org/apiv2/search/text/?query=${searchTerm}&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
+    `https://freesound.org/apiv2/search/text/?query=${searchTerm}=&token=${process.env.NEXT_PUBLIC_API_TOKEN}`
   );
 
   async function previewSound(id) {
@@ -38,6 +40,9 @@ export default function Search() {
     console.log("result", id);
     event.dataTransfer.setData("id", id);
   }
+  function handleScroll(event) {
+    console.log("Scroll position:", event.target.scrollTop);
+  }
 
   const searchResults = data.results;
 
@@ -47,26 +52,41 @@ export default function Search() {
         <input type="text"></input>
         <button>search</button>
       </form>
-      <ul>
-        {searchResults.map((searchResult) => (
+      <InfiniteScroll
+        dataLength={searchResults.length}
+        className="search-results"
+      >
+        {searchResults.map((searchResult, index) => (
           <>
             <li
-              key={searchResult.id}
+              key={index}
               draggable
               onDragStart={(event) => handleDrag(event, searchResult.id)}
             >
               {searchResult.name}
+              <button
+                className="preview-button"
+                onClick={() => previewSound(searchResult.id)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-play"
+                >
+                  <polygon points="6 3 20 12 6 21 6 3" />
+                </svg>
+              </button>
             </li>
-            <button
-              key={`preview-${searchResult.id}`}
-              className="preview-button"
-              onClick={() => previewSound(searchResult.id)}
-            >
-              preview
-            </button>
           </>
         ))}
-      </ul>
+      </InfiniteScroll>
     </>
   );
 }
