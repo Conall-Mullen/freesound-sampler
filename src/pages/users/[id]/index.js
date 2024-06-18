@@ -6,14 +6,11 @@ import { useRouter } from "next/router";
 export default function User() {
   const { data: session } = useSession();
   const router = useRouter();
-  const { isReady } = router;
   const { id } = router.query;
-  const { data, isLoading, error, mutate } = useSWR(() =>
-    id ? `/api/users/` : null
-  );
+  const { data, isLoading, mutate } = useSWR(`/api/users`);
 
-  if (!session) return <h2>Loading...</h2>;
-  console.log(data);
+  if (!session || isLoading) return <h2>Loading...</h2>;
+  console.log("data", data);
   return (
     <>
       <h1>Welcome {session.user.name}</h1>
