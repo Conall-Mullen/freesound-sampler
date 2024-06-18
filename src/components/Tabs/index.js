@@ -44,7 +44,9 @@ export default function Tabs() {
       </button>
       {viewSearchBar ? <Search /> : null}
       <button
-        onClick={() => updateViewMixer(!viewMixer)}
+        onClick={() => {
+          updateViewMixer(!viewMixer);
+        }}
         className="tab-button"
       >
         <svg
