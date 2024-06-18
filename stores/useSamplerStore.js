@@ -20,6 +20,7 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
+  updateSamples: (newSamples) => set({ audioSamples: newSamples }),
 
   sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
   updateSampleVolume: (index, volume) =>
@@ -29,6 +30,7 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
+  updateSampleVolumes: (newVolumes) => set({ sampleVolume: newVolumes }),
 
   viewSaveButton: false,
   updateViewSaveButton: () =>

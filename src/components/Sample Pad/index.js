@@ -5,8 +5,9 @@ import { produce } from "immer";
 
 export default function SamplePad({ sample }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  const updateSample = useSamplerStore((state) => state.updateSample);
+  const updateSamples = useSamplerStore((state) => state.updateSample);
   const sampleVolume = useSamplerStore((state) => state.sampleVolume);
+  const updateSampleVolumes = useSamplerStore((state) => state.updateSample);
 
   const audioPlayer = new Audio(sample);
   const sampleIndex = audioSamples.indexOf(sample);
@@ -31,7 +32,7 @@ export default function SamplePad({ sample }) {
 
       audioSamples.forEach((audioSample, index) => {
         if (audioSample === sample) {
-          updateSample(index, newAudio);
+          updateSamples(newAudio);
         }
       });
     } catch (error) {
