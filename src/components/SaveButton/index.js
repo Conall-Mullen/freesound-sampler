@@ -10,19 +10,28 @@ export default function SaveButton() {
 
   async function savePatch(event) {
     event.preventDefault();
-    console.dir(event.target);
+
     const saveData = {
       name: event.target[0].value,
       audioSources: audioSamples,
       faderVolume: sampleVolume,
     };
-    const response = await fetch("/api/users/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(saveData),
-    });
+    console.log(JSON.stringify(saveData));
+    console.log("saveData", saveData);
+    try {
+      const response = await fetch("/api/patches/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveData),
+      });
+      if (!response.ok) {
+        console.log("response", response);
+      }
+    } catch (e) {
+      console.error(e.message);
+    }
 
     event.target.reset();
     updateViewSaveButton(!viewSaveButton);

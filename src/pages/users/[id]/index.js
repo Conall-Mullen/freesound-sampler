@@ -22,7 +22,7 @@ export default function User() {
   const patches = data[0].patches;
 
   async function deletePatch(patchId) {
-    // Delete after restructuring database
+    // Delete after restructuring
   }
   return (
     <>
