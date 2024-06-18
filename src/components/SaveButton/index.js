@@ -26,9 +26,6 @@ export default function SaveButton() {
         },
         body: JSON.stringify(saveData),
       });
-      if (!response.ok) {
-        console.log("response", response);
-      }
     } catch (e) {
       console.error(e.message);
     }
