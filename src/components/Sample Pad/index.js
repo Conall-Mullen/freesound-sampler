@@ -1,24 +1,16 @@
-"use client";
-import React from "react";
+import React, { useState } from "react";
 import { useSamplerStore } from "../../../stores/useSamplerStore.js";
 import { produce } from "immer";
 
 export default function SamplePad({ sample }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  const updateSamples = useSamplerStore((state) => state.updateSample);
-  const sampleVolume = useSamplerStore((state) => state.sampleVolume);
-  const updateSampleVolumes = useSamplerStore((state) => state.updateSample);
-
-  const audioPlayer = new Audio(sample);
+  const convertToBuffer = useSamplerStore((state) => state.convertToBuffer);
+  const updateSample = useSamplerStore((state) => state.updateSample);
   const sampleIndex = audioSamples.indexOf(sample);
-  audioPlayer.volume = sampleVolume[sampleIndex];
+  const sampleVolume = useSamplerStore(
+    (state) => state.sampleVolume[sampleIndex]
+  );
 
-  function playSample() {
-    audioPlayer.play();
-  }
-  function handleDragOverSample(event) {
-    event.preventDefault();
-  }
   async function handleDropSample(event, sample) {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
@@ -27,16 +19,19 @@ export default function SamplePad({ sample }) {
       return;
     }
     try {
-      const newAudio = await fetchData(id);
-      console.log("New audio URL:", newAudio);
-
-      audioSamples.forEach((audioSample, index) => {
-        if (audioSample === sample) {
-          updateSamples(newAudio);
-        }
-      });
+      convertToBuffer(sample);
     } catch (error) {
-      console.error("Error fetching new audio:", error);
+      console.error("Error fetching or decoding audio data:", error);
+    }
+  }
+
+  function playSample() {
+    if (audioBuffer && audioContext) {
+      const source = audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(audioContext.destination);
+      source.start(0);
+      setAudioSource(source);
     }
   }
 
@@ -45,19 +40,22 @@ export default function SamplePad({ sample }) {
       `https://freesound.org/apiv2/sounds/${id}/?token=${process.env.NEXT_PUBLIC_API_TOKEN}`
     );
     const preview = await result.json();
-    const previewURL = await preview.previews["preview-hq-mp3"];
-    console.log(preview);
+    const previewURL = preview.previews["preview-hq-mp3"];
     return previewURL;
   }
 
+  function handleDragOverSample(event) {
+    event.preventDefault();
+  }
+
   return (
-    <>
+    <div>
       <button
         className="sample-pad"
         onClick={playSample}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
       ></button>
-    </>
+    </div>
   );
 }

@@ -20,8 +20,14 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
-  updateSamples: (newSamples) => set({ audioSamples: newSamples }),
-
+  updateAllSamples: (newSamples) => set({ audioSamples: newSamples }),
+  convertToBuffer: async (url) => {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioContext = new AudioContext();
+    const decodedData = await audioContext.decodeAudioData(arrayBuffer);
+    console.log("decoded data", decodedData);
+  },
   sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
   updateSampleVolume: (index, volume) =>
     set(
@@ -30,7 +36,7 @@ export const useSamplerStore = create((set) => ({
         return state;
       })
     ),
-  updateSampleVolumes: (newVolumes) => set({ sampleVolume: newVolumes }),
+  updateAllSamplesVolume: (newVolumes) => set({ sampleVolume: newVolumes }),
 
   viewSaveButton: false,
   updateViewSaveButton: () =>

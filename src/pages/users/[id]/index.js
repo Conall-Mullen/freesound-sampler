@@ -2,28 +2,27 @@ import { useSession } from "next-auth/react";
 import LoginButton from "../../../components/LoginButton";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
 
 export default function User() {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  const updateSamples = useSamplerStore((state) => state.updateSamples);
-  const sampleVolume = useSamplerStore((state) => state.sampleVolume);
-  const updateSampleVolumes = useSamplerStore(
-    (state) => state.updateSampleVolumes
+  const updateAllSamples = useSamplerStore((state) => state.updateAllSamples);
+  const updateAllSamplesVolume = useSamplerStore(
+    (state) => state.updateAllSamplesVolume
   );
 
   const { data: session } = useSession();
   const router = useRouter();
-  const { id } = router.query;
-  const { data, isLoading, mutate } = useSWR(`/api/users`);
+
+  const { data, isLoading, mutate } = useSWR(`/api/patches`);
 
   if (!session || isLoading) return <h2>Loading...</h2>;
-  const patches = data[0].patches;
+  const patches = data;
 
   async function deletePatch(patchId) {
-    // Delete after restructuring database
+    // Delete after restructuring
   }
+
   return (
     <>
       <h1>Welcome {session.user.name}</h1>
@@ -33,8 +32,9 @@ export default function User() {
           <li key={index} className="patch-list-item">
             <p
               onClick={() => {
-                updateSamples(patches[index].audioSources);
-                updateSampleVolumes(patches[index].faderVolume);
+                updateAllSamples(patches[index].audioSources);
+                updateAllSamplesVolume(patches[index].faderVolume);
+                console.log("audio samples", audioSamples);
                 router.push("/");
               }}
               className="patch-name"
