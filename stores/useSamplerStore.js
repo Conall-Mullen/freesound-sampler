@@ -1,6 +1,7 @@
 import { produce } from "immer";
 import { create } from "zustand";
 import { useData } from "../utils/useData.js";
+import { initialize } from "next/dist/server/lib/render-server.js";
 
 export const useSamplerStore = create((set) => ({
   audioSamples: [
@@ -13,6 +14,7 @@ export const useSamplerStore = create((set) => ({
     "samples/MR16_Cow_C2A.wav",
     "samples/MR16_Cym_T1A.wav",
   ],
+
   updateSample: (index, newSample) =>
     set(
       produce((state) => {

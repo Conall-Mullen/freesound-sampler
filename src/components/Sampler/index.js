@@ -4,7 +4,6 @@ import useSWR from "swr";
 
 export default function Sampler() {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  console.log(audioSamples);
 
   return (
     <div className="sample-pad-container">

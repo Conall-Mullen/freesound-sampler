@@ -10,29 +10,31 @@ export default function SamplePad({ sample }) {
   const sampleVolume = useSamplerStore(
     (state) => state.sampleVolume[sampleIndex]
   );
+  if (typeof sample === "string") {
+    convertToBuffer(sample, sampleIndex);
+  }
 
-  async function handleDropSample(event, sample) {
+  function handleDropSample(event, sample) {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
     if (!id) {
       console.error("No ID retrieved from dataTransfer");
       return;
     }
-    try {
-      convertToBuffer(sample, sampleIndex);
-      console.log("audio samples", sample);
-    } catch (error) {
-      console.error("Error fetching or decoding audio data:", error);
-    }
   }
 
-  function playSample() {
-    if (audioBuffer && audioContext) {
+  async function playSample() {
+    console.log("samples", audioSamples);
+    try {
       const source = audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+      source.buffer = sample;
+
       source.connect(audioContext.destination);
-      source.start(0);
-      setAudioSource(source);
+
+      // Start playing the audio
+      source.start();
+    } catch (error) {
+      console.error("Error playing audio:", error);
     }
   }
 
