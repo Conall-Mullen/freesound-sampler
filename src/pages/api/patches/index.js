@@ -9,7 +9,8 @@ export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
   const id = session?.user.userId;
   if (request.method === "GET") {
-    response.status(200).json({ status: "ALL GOOD BROTHER" });
+    const patches = await Patches.find();
+    response.status(200).json(patches);
   }
   if (request.method === "POST") {
     try {
