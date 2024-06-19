@@ -6,7 +6,7 @@ import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
 
 export default function User() {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  const updateSample = useSamplerStore((state) => state.updateSamples);
+  const updateSamples = useSamplerStore((state) => state.updateSamples);
   const updateSampleVolumes = useSamplerStore(
     (state) => state.updateSampleVolumes
   );
@@ -22,17 +22,6 @@ export default function User() {
   async function deletePatch(patchId) {
     // Delete after restructuring
   }
-  function handleUpdateSamples(urls) {
-    console.log("urls", urls);
-    urls.forEach((url, i) => writeUrlToBuffer(url, i));
-  }
-  async function writeUrlToBuffer(url, i) {
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    const audioContext = new AudioContext();
-    const decodedData = await audioContext.decodeAudioData(arrayBuffer);
-    updateSample(i, decodedData);
-  }
 
   return (
     <>
@@ -43,8 +32,9 @@ export default function User() {
           <li key={index} className="patch-list-item">
             <p
               onClick={() => {
-                handleUpdateSamples(patches[index].audioSources);
+                updateSamples(patches[index].audioSources);
                 updateSampleVolumes(patches[index].faderVolume);
+                console.log("audio samples", audioSamples);
                 router.push("/");
               }}
               className="patch-name"

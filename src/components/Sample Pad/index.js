@@ -33,7 +33,13 @@ export default function SamplePad({ sample }) {
 
       audioSamples.forEach((audioSample, index) => {
         if (audioSample === sample) {
-          updateSample(index, newAudioUrl);
+          const buffer = Buffer.alloc(audioSample.byteLength);
+          const view = new Uint8Array(audioSample);
+          for (let i = 0; i < buffer.length; ++i) {
+            buffer[i] = view[i];
+          }
+          console.log("buffer", buffer);
+          updateSample(index, buffer);
         }
       });
     } catch (error) {
