@@ -21,12 +21,21 @@ export const useSamplerStore = create((set) => ({
       })
     ),
   updateAllSamples: (newSamples) => set({ audioSamples: newSamples }),
-  convertToBuffer: async (url) => {
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    const audioContext = new AudioContext();
-    const decodedData = await audioContext.decodeAudioData(arrayBuffer);
-    console.log("decoded data", decodedData);
+  convertToBuffer: async (url, index) => {
+    try {
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioContext = new AudioContext();
+      const decodedData = await audioContext.decodeAudioData(arrayBuffer);
+
+      set(
+        produce((state) => {
+          state.audioSamples[index] = decodedData;
+        })
+      );
+    } catch (error) {
+      console.error("Error decoding audio data", error);
+    }
   },
   sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
   updateSampleVolume: (index, volume) =>

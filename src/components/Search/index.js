@@ -4,6 +4,7 @@ import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Search() {
+  const audioSamples = useSamplerStore((state) => state.audioSamples);
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data, isLoading, isError } = useData(
@@ -37,7 +38,7 @@ export default function Search() {
   }
 
   function handleDrag(event, id) {
-    console.log("result", id);
+    console.log("audio samples", audioSamples);
     event.dataTransfer.setData("id", id);
   }
   function handleScroll(event) {

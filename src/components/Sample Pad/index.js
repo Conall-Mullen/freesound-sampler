@@ -19,7 +19,8 @@ export default function SamplePad({ sample }) {
       return;
     }
     try {
-      convertToBuffer(sample);
+      convertToBuffer(sample, sampleIndex);
+      console.log("audio samples", sample);
     } catch (error) {
       console.error("Error fetching or decoding audio data:", error);
     }
