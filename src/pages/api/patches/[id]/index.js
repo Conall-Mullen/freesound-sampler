@@ -21,4 +21,9 @@ export default async function handler(request, response) {
       response.status(400).json({ error: error.message });
     }
   }
+  if (request.method === "DELETE") {
+    await Patches.findByIdAndDelete(id);
+
+    response.status(200).json({ message: "success" });
+  }
 }

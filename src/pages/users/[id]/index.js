@@ -21,8 +21,10 @@ export default function User() {
   if (!session || isLoading) return <h2>Loading...</h2>;
   const patches = data;
 
-  async function deletePatch(patchId) {
-    // Delete after restructuring
+  async function deletePatch(id) {
+    await fetch(`/api/patches/${id}`, {
+      method: "DELETE",
+    });
   }
 
   return (
