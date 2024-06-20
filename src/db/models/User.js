@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
+import "./Patches";
 const { Schema } = mongoose;
-const patchSchema = new Schema({
-  name: { type: String, required: false },
-  audioSources: { type: Array, required: false },
-  faderVolume: { type: Array, required: false },
-});
+
 const userSchema = new Schema({
-  name: { type: String, required: false },
-  email: { type: String, required: false },
-  patches: [patchSchema],
+  name: { type: String },
+  email: { type: String },
+  patches: { type: [Schema.Types.ObjectId], ref: "Patches" },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

@@ -21,7 +21,17 @@ export const useSamplerStore = create((set) => ({
       })
     ),
   updateSamples: (newSamples) => set({ audioSamples: newSamples }),
-
+  convertToBuffer: async (url, index) => {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioContext = new AudioContext();
+    const decodedData = await audioContext.decodeAudioData(arrayBuffer);
+    set(
+      produce((state) => {
+        state.audioSamples[index] = decodedData;
+      })
+    );
+  },
   sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
   updateSampleVolume: (index, volume) =>
     set(
