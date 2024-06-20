@@ -47,6 +47,7 @@ export const useSamplerStore = create((set) => ({
   updateSampleVolumes: (newVolumes) => set({ sampleVolume: newVolumes }),
 
   viewSaveButton: false,
+
   updateViewSaveButton: () =>
     set((state) => ({ viewSaveButton: !state.viewSaveButton })),
 

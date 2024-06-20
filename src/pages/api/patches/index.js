@@ -8,6 +8,7 @@ export default async function handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const id = session?.user.userId;
+  console.log("body", request.body);
   if (request.method === "GET") {
     const patches = await Patches.find();
     response.status(200).json(patches);
@@ -22,6 +23,17 @@ export default async function handler(request, response) {
         $push: { patches: newPatch._id },
       });
       response.status(201).json({ status: "Patch created" });
+    } catch (error) {
+      console.log(error);
+      response.status(400).json({ error: error.message });
+    }
+  }
+  if (request.method === "PATCH") {
+    try {
+      const newPatchData = await request.body;
+      await Patches.findByIdAndUpdate(id, {
+        $set: { patches: newPatchData._id },
+      });
     } catch (error) {
       console.log(error);
       response.status(400).json({ error: error.message });
