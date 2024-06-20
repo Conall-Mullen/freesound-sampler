@@ -5,10 +5,12 @@ import { useRouter } from "next/router";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
 
 export default function User() {
-  const audioSamples = useSamplerStore((state) => state.audioSamples);
   const updateSamples = useSamplerStore((state) => state.updateSamples);
   const updateSampleVolumes = useSamplerStore(
     (state) => state.updateSampleVolumes
+  );
+  const updateCurrentPatch = useSamplerStore(
+    (state) => state.updateCurrentPatch
   );
 
   const { data: session } = useSession();
@@ -34,7 +36,7 @@ export default function User() {
               onClick={() => {
                 updateSamples(patches[index].audioSources);
                 updateSampleVolumes(patches[index].faderVolume);
-                console.log("audio samples", audioSamples);
+                updateCurrentPatch(patch._id);
                 router.push("/");
               }}
               className="patch-name"

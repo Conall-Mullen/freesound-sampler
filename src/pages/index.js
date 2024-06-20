@@ -5,11 +5,16 @@ import Sampler from "../components/Sampler";
 import Tabs from "../components/Tabs";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import useSWR from "swr";
 
 export default function Home() {
   const { data: session, status } = useSession();
-
+  const currentPatch = useSamplerStore((state) => state.currentPatch);
   const viewMixer = useSamplerStore((state) => state.viewMixer);
+  const { data, isLoading, mutate } = useSWR(`/api/patches`);
+
+  if (!session || isLoading) return <h2>Loading...</h2>;
+  console.log("current patch", currentPatch);
 
   return (
     <>
