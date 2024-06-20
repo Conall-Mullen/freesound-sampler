@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSamplerStore } from "../../../stores/useSamplerStore.js";
 import { produce } from "immer";
 
@@ -15,6 +15,17 @@ export default function SamplePad({ sample }) {
     (state) => state.sampleVolume[sampleIndex]
   );
 
+  useEffect(() => {
+    async function convertUrlToBuffer() {
+      const response = await fetch(sample);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioContext = new AudioContext();
+      const decodedData = await audioContext.decodeAudioData(arrayBuffer);
+      setAudioBuffer(decodedData);
+      setAudioContext(audioContext);
+    }
+    convertUrlToBuffer();
+  }, []);
   async function handleDropSample(event, sample) {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
@@ -30,18 +41,7 @@ export default function SamplePad({ sample }) {
       const decodedData = await audioContext.decodeAudioData(arrayBuffer);
       setAudioBuffer(decodedData);
       setAudioContext(audioContext);
-
-      audioSamples.forEach((audioSample, index) => {
-        if (audioSample === sample) {
-          const buffer = Buffer.alloc(audioSample.byteLength);
-          const view = new Uint8Array(audioSample);
-          for (let i = 0; i < buffer.length; ++i) {
-            buffer[i] = view[i];
-          }
-          console.log("buffer", buffer);
-          updateSample(index, buffer);
-        }
-      });
+      updateSample(sampleIndex, newAudioUrl);
     } catch (error) {
       console.error("Error fetching or decoding audio data:", error);
     }
