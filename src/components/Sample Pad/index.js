@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSamplerStore } from "../../../stores/useSamplerStore.js";
-import { produce } from "immer";
 
 export default function SamplePad({ sample }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
@@ -25,7 +24,7 @@ export default function SamplePad({ sample }) {
       setAudioContext(audioContext);
     }
     convertUrlToBuffer();
-  }, []);
+  }, [sample]);
 
   async function handleDropSample(event, sample) {
     event.preventDefault();

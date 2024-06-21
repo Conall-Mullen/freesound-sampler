@@ -3,7 +3,8 @@ import LoginButton from "../../../components/LoginButton";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
-import { ReactComponent as YourSvg } from "../../../../public/icons/circle-x.svg";
+import React from "react";
+
 export default function User() {
   const updateSamples = useSamplerStore((state) => state.updateSamples);
   const updateSampleVolumes = useSamplerStore(
@@ -51,8 +52,7 @@ export default function User() {
                 deletePatch(patch._id);
               }}
             >
-              <YourSvg />
-              {/* <svgs
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -62,12 +62,12 @@ export default function User() {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-circle-x"
+                className="delete-icon"
               >
                 <circle cx="12" cy="12" r="10" />
                 <path d="m15 9-6 6" />
                 <path d="m9 9 6 6" />
-              </svgs> */}
+              </svg>
             </button>
           </li>
         ))}

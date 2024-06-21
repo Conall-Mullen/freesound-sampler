@@ -47,10 +47,10 @@ export default function Search() {
   const searchResults = data.results;
 
   return (
-    <>
+    <div className="search-results-container">
       <form onSubmit={searchForSounds}>
-        <input type="text"></input>
-        <button>search</button>
+        <input type="text" className="search-bar"></input>
+        <button className="search-button">search</button>
       </form>
       <InfiniteScroll
         dataLength={searchResults.length}
@@ -87,6 +87,6 @@ export default function Search() {
           </>
         ))}
       </InfiniteScroll>
-    </>
+    </div>
   );
 }
