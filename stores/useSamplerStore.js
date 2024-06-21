@@ -1,6 +1,8 @@
 import { produce } from "immer";
 import { create } from "zustand";
 import { useData } from "../utils/useData.js";
+import { current } from "immer";
+import { update } from "lodash";
 
 export const useSamplerStore = create((set) => ({
   audioSamples: [
@@ -21,17 +23,19 @@ export const useSamplerStore = create((set) => ({
       })
     ),
   updateSamples: (newSamples) => set({ audioSamples: newSamples }),
-  convertToBuffer: async (url, index) => {
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    const audioContext = new AudioContext();
-    const decodedData = await audioContext.decodeAudioData(arrayBuffer);
-    set(
-      produce((state) => {
-        state.audioSamples[index] = decodedData;
-      })
-    );
-  },
+  // convertToBuffer: async (url, index) => {
+  //   const response = await fetch(url);
+  //   const arrayBuffer = await response.arrayBuffer();
+  //   const audioContext = new AudioContext();
+  //   const decodedData = await audioContext.decodeAudioData(arrayBuffer);
+  //   set(
+  //     produce((state) => {
+  //       state.audioSamples[index] = decodedData;
+  //     })
+  //   );
+  // },
+  currentPatch: null,
+  updateCurrentPatch: (newPatch) => set({ currentPatch: newPatch }),
   sampleVolume: [1, 1, 1, 1, 1, 1, 1, 1],
   updateSampleVolume: (index, volume) =>
     set(
@@ -43,6 +47,7 @@ export const useSamplerStore = create((set) => ({
   updateSampleVolumes: (newVolumes) => set({ sampleVolume: newVolumes }),
 
   viewSaveButton: false,
+
   updateViewSaveButton: () =>
     set((state) => ({ viewSaveButton: !state.viewSaveButton })),
 

@@ -26,6 +26,7 @@ export default function SamplePad({ sample }) {
     }
     convertUrlToBuffer();
   }, []);
+
   async function handleDropSample(event, sample) {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");

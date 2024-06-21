@@ -8,6 +8,7 @@ export default async function handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const id = session?.user.userId;
+  console.log("body", request.body);
   if (request.method === "GET") {
     const patches = await Patches.find();
     response.status(200).json(patches);
