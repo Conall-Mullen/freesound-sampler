@@ -22,6 +22,8 @@ li {
   max-height: 200px;
   width: 300px;
   background-color: #00000000;
+  top: 23%;
+  left: 13%;
 }
 .search-results-container {
   display: flex;
