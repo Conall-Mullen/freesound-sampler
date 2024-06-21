@@ -2,17 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
+      "src": "next.config.js",
+      "use": "@vercel/node",
       "config": {
-        "distDir": "build"
+        "maxLambdaSize": "15mb"
       }
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "routes": [{ "handle": "filesystem" }, { "src": "/.*", "dest": "/index.js" }]
 }
