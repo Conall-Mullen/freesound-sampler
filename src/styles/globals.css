@@ -15,12 +15,13 @@ li {
   border-radius: 10px;
 }
 .search-results {
-  overflow-y: scroll;
-  padding: 0;
+  overflow-y: hidden;
+  padding: 2px;
   position: absolute;
   overflow-x: hidden;
-  max-height: 400px;
+  max-height: 200px;
   width: 300px;
+  backdrop-filter: blur(100em);
 }
 .login {
   display: flex;
@@ -47,6 +48,7 @@ li {
   background-color: #555555;
   border: 0;
 }
+
 .preview-button {
   width: 3em;
   height: 3em;

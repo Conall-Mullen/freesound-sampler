@@ -3,7 +3,7 @@ import LoginButton from "../../../components/LoginButton";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
-
+import { ReactComponent as YourSvg } from "../../../../public/icons/circle-x.svg";
 export default function User() {
   const updateSamples = useSamplerStore((state) => state.updateSamples);
   const updateSampleVolumes = useSamplerStore(
@@ -18,7 +18,7 @@ export default function User() {
 
   const { data, isLoading, mutate } = useSWR(`/api/patches`);
 
-  if (!session || isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <h2>Loading...</h2>;
   const patches = data;
 
   async function deletePatch(id) {
@@ -51,7 +51,8 @@ export default function User() {
                 deletePatch(patch._id);
               }}
             >
-              <svg
+              <YourSvg />
+              {/* <svgs
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -66,7 +67,7 @@ export default function User() {
                 <circle cx="12" cy="12" r="10" />
                 <path d="m15 9-6 6" />
                 <path d="m9 9 6 6" />
-              </svg>
+              </svgs> */}
             </button>
           </li>
         ))}
