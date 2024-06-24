@@ -2,7 +2,6 @@ import { produce } from "immer";
 import { create } from "zustand";
 import { useData } from "../utils/useData.js";
 import { current } from "immer";
-import { update } from "lodash";
 
 export const useSamplerStore = create((set) => ({
   audioSamples: [
