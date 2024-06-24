@@ -63,12 +63,16 @@ export default function SaveButton() {
   }
   return !currentPatch ? (
     <>
-      <form onSubmit={savePatch}>
-        <input type="text"></input>
-        <button type="submit">save</button>
+      <form onSubmit={savePatch} className="save-bar">
+        <input type="text" className="text-field"></input>
+        <button type="submit" className="submit-button">
+          save
+        </button>
       </form>
     </>
   ) : (
-    <button onClick={saveChanges}>save changes</button>
+    <button onClick={saveChanges} className="save-bar submit-button">
+      save changes
+    </button>
   );
 }
