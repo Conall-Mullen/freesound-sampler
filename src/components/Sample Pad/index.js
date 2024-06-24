@@ -25,7 +25,7 @@ export default function SamplePad({ sample }) {
       setAudioContext(audioContext);
     }
     convertUrlToBuffer();
-  }, []);
+  }, [sample]);
 
   async function handleDropSample(event, sample) {
     event.preventDefault();

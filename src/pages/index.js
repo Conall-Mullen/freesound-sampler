@@ -13,7 +13,7 @@ export default function Home() {
   const viewMixer = useSamplerStore((state) => state.viewMixer);
   const { data, isLoading, mutate } = useSWR(`/api/patches`);
 
-  if (!session || isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <h2>Loading...</h2>;
 
   return (
     <>
