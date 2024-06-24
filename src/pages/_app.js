@@ -5,7 +5,9 @@ import { SWRConfig } from "swr";
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
-}) {
+})
+
+{
   return (
     <SWRConfig
       value={{
