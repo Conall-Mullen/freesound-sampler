@@ -10,15 +10,14 @@ li {
   margin-left: 1em;
   width: 220px; /* Adjust the width to your desired character limit */
   word-wrap: break-word;
-
   margin-left: 1%;
   padding-left: 1.15em;
   padding-right: 2%;
-
   font-size: small;
 }
 .search-wrapper {
   display: flex;
+  position: fixed;
   flex-direction: row;
   align-items: center;
   background-color: #555555;
@@ -34,6 +33,7 @@ li {
   margin-right: 1em;
   margin-left: 1em;
 }
+
 .search-results {
   overflow-y: hidden;
   padding: 0;
@@ -43,7 +43,47 @@ li {
   width: 240px;
   margin-top: 1em;
 }
+.loading-search-results {
+  transition: 2.5s; /* Transition duration */
+  -o-transform: rotate(720deg);
+  -ms-transform: rotate(720deg);
+  -moz-transform: rotate(720deg);
+  -webkit-transform: rotate(720deg);
+  transform: rotate(360deg); /* How many times it'll rotate = degrees÷360 */
+}
 
+.save-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #555555;
+  border-radius: 10px;
+}
+.save-bar {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+.submit-button {
+  border: solid 2px rgb(255, 255, 255);
+  border-radius: 5px;
+  background-color: #555555;
+  color: white;
+  padding: 0.25em;
+  margin-left: 1em;
+  transition: background-color 0.5s ease-out;
+}
+.submit-button:active {
+  background-color: #ababab;
+  transition: background-color 0s;
+}
+.text-field {
+  border: 0px;
+  border-radius: 5px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 .login {
   display: flex;
   flex-direction: column;
@@ -69,6 +109,7 @@ li {
   background-color: #555555;
   border: 0;
 }
+
 .preview-button {
   width: 3em;
   height: 3em;
@@ -143,7 +184,6 @@ form {
 }
 .volume-fader::-webkit-slider-thumb {
   -webkit-appearance: none;
-
   width: 3em;
   height: 1.5em;
   border-radius: 5px;
