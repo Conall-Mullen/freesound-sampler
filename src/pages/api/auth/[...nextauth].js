@@ -8,6 +8,7 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+
       profile(profile) {
         console.log("profile", profile);
         return {
@@ -18,6 +19,7 @@ export const authOptions = {
       },
     }),
   ],
+  secret: process.env.secret,
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     async session({ session, user }) {
