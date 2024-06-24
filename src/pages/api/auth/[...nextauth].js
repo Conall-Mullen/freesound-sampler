@@ -19,7 +19,7 @@ export const authOptions = {
       },
     }),
   ],
-  secret: process.env.secret,
+  secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     async session({ session, user }) {
