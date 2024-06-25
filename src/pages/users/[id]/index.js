@@ -19,7 +19,7 @@ export default function User() {
   const { data, isLoading, mutate } = useSWR(`/api/patches`);
 
   if (isLoading) return <h2>Loading...</h2>;
-  const patches = data.patches;
+  const patches = data;
   async function deletePatch(id) {
     await fetch(`/api/patches/${id}`, {
       method: "DELETE",
