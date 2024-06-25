@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSamplerStore } from "../../../stores/useSamplerStore.js";
 import { produce } from "immer";
 
-export default function SamplePad({ sample }) {
+export default function SamplePad({ sample, button }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
   const updateSample = useSamplerStore((state) => state.updateSample);
 
@@ -14,6 +14,7 @@ export default function SamplePad({ sample }) {
   const sampleVolume = useSamplerStore(
     (state) => state.sampleVolume[sampleIndex]
   );
+  console.log("buttonIndex", button, "key pressed", window.event);
 
   useEffect(() => {
     async function convertUrlToBuffer() {
