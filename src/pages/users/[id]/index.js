@@ -16,11 +16,10 @@ export default function User() {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const { data, isLoading, mutate } = useSWR(`/api/patches`);
+  const { data, isLoading, mutate } = useSWR(`/api/users`);
 
-  if (!session || isLoading) return <h2>Loading...</h2>;
-  const patches = data;
-
+  if (isLoading) return <h2>Loading...</h2>;
+  const patches = data.patches;
   async function deletePatch(id) {
     await fetch(`/api/patches/${id}`, {
       method: "DELETE",
@@ -31,6 +30,7 @@ export default function User() {
     <>
       <h1>Welcome {session.user.name}</h1>
       <LoginButton />
+
       <ul>
         {patches.map((patch, index) => (
           <li key={index} className="patch-list-item">
@@ -71,6 +71,26 @@ export default function User() {
           </li>
         ))}
       </ul>
+      <button
+        onClick={() => updateViewSearchBar(!viewSearchBar)}
+        className="tab-button"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#FFF"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-search"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </button>
     </>
   );
 }

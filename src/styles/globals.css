@@ -207,6 +207,9 @@ form {
   padding: 0;
   border-radius: 10px;
   border: 0;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .delete-patch-button {
   list-style-type: none;
@@ -219,4 +222,18 @@ form {
 .delete-patch-icon:active {
   fill: #000;
   stroke: #b0b0b0;
+}
+.login-icon {
+  transition: fill 0.5s ease-out;
+}
+.login-icon:active {
+  fill: #ababab;
+  transition: fill 0s;
+}
+.logout-icon {
+  transition: fill 0.5s ease-out;
+}
+.logout-icon:active {
+  fill: #ababab;
+  transition: fill 0s;
 }
