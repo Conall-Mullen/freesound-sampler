@@ -14,7 +14,6 @@ export default function SamplePad({ sample, button }) {
   const sampleVolume = useSamplerStore(
     (state) => state.sampleVolume[sampleIndex]
   );
-  console.log("buttonIndex", button, "key pressed", window.event);
 
   useEffect(() => {
     async function convertUrlToBuffer() {
@@ -48,7 +47,9 @@ export default function SamplePad({ sample, button }) {
       console.error("Error fetching or decoding audio data:", error);
     }
   }
-
+  function handleButtonPress(event) {
+    console.log(event.key);
+  }
   function playSample() {
     if (audioBuffer && audioContext) {
       const source = audioContext.createBufferSource();
@@ -77,6 +78,7 @@ export default function SamplePad({ sample, button }) {
       <button
         className="sample-pad"
         onClick={playSample}
+        onKeyDown={handleButtonPress}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
       ></button>
