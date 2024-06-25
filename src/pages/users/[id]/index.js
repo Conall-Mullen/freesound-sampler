@@ -3,6 +3,7 @@ import LoginButton from "../../../components/LoginButton";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
+import Link from "next/link";
 
 export default function User() {
   const updateSamples = useSamplerStore((state) => state.updateSamples);
@@ -71,7 +72,7 @@ export default function User() {
           </li>
         ))}
       </ul>
-      <a
+      <Link
         href="/"
         className="tab-button"
       >
@@ -90,7 +91,7 @@ export default function User() {
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
         </svg>
-      </a>
+      </Link>
     </>
   );
 }
