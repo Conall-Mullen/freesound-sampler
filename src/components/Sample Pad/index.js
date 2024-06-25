@@ -47,9 +47,21 @@ export default function SamplePad({ sample, button }) {
       console.error("Error fetching or decoding audio data:", error);
     }
   }
-  function handleButtonPress(event) {
-    console.log(event.key);
-  }
+  useEffect(() => {
+    // Function to handle key press events
+    const handleKeyPress = (event) => {
+      console.log(`Key pressed: ${event.key}`);
+    };
+
+    // Add event listener for keydown event
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
   function playSample() {
     if (audioBuffer && audioContext) {
       const source = audioContext.createBufferSource();
@@ -78,7 +90,6 @@ export default function SamplePad({ sample, button }) {
       <button
         className="sample-pad"
         onClick={playSample}
-        onKeyDown={handleButtonPress}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
       ></button>
