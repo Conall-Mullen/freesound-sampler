@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function Sampler() {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
-  console.log("window", window);
+
   return (
     <div className="sample-pad-container">
       {audioSamples.map((sample, index) => (
