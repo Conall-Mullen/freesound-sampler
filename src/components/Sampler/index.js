@@ -9,7 +9,7 @@ export default function Sampler() {
     <div className="sample-pad-container">
       {audioSamples.map((sample, index) => (
         <div key={index}>
-          <SamplePad sample={sample} button={index} />
+          <SamplePad sample={sample} />
         </div>
       ))}
     </div>

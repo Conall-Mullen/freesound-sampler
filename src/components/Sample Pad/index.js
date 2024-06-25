@@ -47,20 +47,6 @@ export default function SamplePad({ sample, button }) {
       console.error("Error fetching or decoding audio data:", error);
     }
   }
-  useEffect(() => {
-    // Function to handle key press events
-    const handleKeyPress = (event) => {
-      console.log(`Key pressed: ${event.key}`);
-    };
-
-    // Add event listener for keydown event
-    window.addEventListener("keydown", handleKeyPress);
-
-    // Cleanup function to remove event listener
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
 
   function playSample() {
     if (audioBuffer && audioContext) {
