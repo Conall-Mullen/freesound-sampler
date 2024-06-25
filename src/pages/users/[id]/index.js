@@ -71,8 +71,8 @@ export default function User() {
           </li>
         ))}
       </ul>
-      <button
-        onClick={() => updateViewSearchBar(!viewSearchBar)}
+      <a
+        href="/"
         className="tab-button"
       >
         <svg
@@ -90,7 +90,7 @@ export default function User() {
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
         </svg>
-      </button>
+      </a>
     </>
   );
 }
