@@ -72,9 +72,10 @@ export default function User() {
           </li>
         ))}
       </ul>
+        <button className="tab-button">
       <Link
         href="/"
-        className="tab-button"
+        
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,6 +93,7 @@ export default function User() {
           <path d="m21 21-4.3-4.3" />
         </svg>
       </Link>
+            </button>
     </>
   );
 }
