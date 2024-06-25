@@ -16,7 +16,7 @@ export default function User() {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const { data, isLoading, mutate } = useSWR(`/api/users`);
+  const { data, isLoading, mutate } = useSWR(`/api/patches`);
 
   if (isLoading) return <h2>Loading...</h2>;
   const patches = data.patches;
