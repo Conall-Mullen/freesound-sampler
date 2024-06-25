@@ -237,3 +237,12 @@ form {
   fill: #ababab;
   transition: fill 0s;
 }
+.tab-button-home{
+  top: 7em;
+    position: fixed;
+    width: 3em;
+    height: 3em;
+    border-radius: 10px;
+    background-color: #555;
+    border: 0;
+}
