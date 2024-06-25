@@ -24,7 +24,7 @@ export default function Home() {
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#FFF"
+            stroke="#000"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
