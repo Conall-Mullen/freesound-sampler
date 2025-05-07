@@ -30,13 +30,15 @@ export default function Tabs() {
         </Button>
         {viewSearchBar ? <Search /> : null}
       </div>
-      <Button
-        onClick={() => {
-          updateViewMixer(!viewMixer);
-        }}
-      >
-        <LuSlidersVertical />
-      </Button>
+      <div>
+        <Button
+          onClick={() => {
+            updateViewMixer(!viewMixer);
+          }}
+        >
+          <LuSlidersVertical />
+        </Button>
+      </div>
       <div>
         <Button
           onClick={() => {

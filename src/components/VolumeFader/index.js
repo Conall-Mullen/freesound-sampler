@@ -1,4 +1,5 @@
 import { useSamplerStore } from "../../../stores/useSamplerStore";
+import { Slider } from "@chakra-ui/react";
 
 export default function VolumeFader({ sample }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
@@ -16,12 +17,19 @@ export default function VolumeFader({ sample }) {
   }
   return (
     <>
-      <input
-        type="range"
-        className="volume-fader"
+      <Slider.Root
+        height="200px"
+        orientation="vertical"
         onChange={moveFader}
-        defaultValue="100"
-      ></input>
+        defaultValue={[100]}
+      >
+        <Slider.Control>
+          <Slider.Track>
+            <Slider.Range />
+          </Slider.Track>
+          <Slider.Thumbs />
+        </Slider.Control>
+      </Slider.Root>
     </>
   );
 }
