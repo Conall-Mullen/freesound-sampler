@@ -4,6 +4,15 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSamplerStore } from "../../../../stores/useSamplerStore.js";
 import Link from "next/link";
+import {
+  Button,
+  Card,
+  Group,
+  IconButton,
+  Stack,
+  VStack,
+} from "@chakra-ui/react";
+import { LuDelete, LuMenu } from "react-icons/lu";
 
 export default function User() {
   const updateSamples = useSamplerStore((state) => state.updateSamples);
@@ -32,54 +41,34 @@ export default function User() {
       <h1>Welcome {session.user.name}</h1>
       <LoginButton />
 
-      <ul>
+      <VStack width="auto">
         {patches.map((patch, index) => (
-          <li key={index} className="patch-list-item">
-            <p
+          <Card.Root key={index} width="15em">
+            <Card.Body
               onClick={() => {
                 updateSamples(patches[index].audioSources);
                 updateSampleVolumes(patches[index].faderVolume);
                 updateCurrentPatch(patch._id);
                 router.push("/");
               }}
-              className="patch-name"
             >
               {patch.name}
-            </p>
-            <button
-              className="delete-patch-button"
+            </Card.Body>
+            <IconButton
               onClick={() => {
                 deletePatch(patch._id);
               }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#000"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="delete-patch-icon"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="m15 9-6 6" />
-                <path d="m9 9 6 6" />
-              </svg>
-            </button>
-          </li>
+              <LuDelete />
+            </IconButton>
+          </Card.Root>
         ))}
-      </ul>
-        <button className="tab-button-home">
-      <Link
-        href="/"
-        
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-      </Link>
-            </button>
+      </VStack>
+      <IconButton className="tab-button-home">
+        <Link href="/">
+          <LuMenu />
+        </Link>
+      </IconButton>
     </>
   );
 }

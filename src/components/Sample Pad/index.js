@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSamplerStore } from "../../../stores/useSamplerStore.js";
 import { produce } from "immer";
+import { Button } from "@chakra-ui/react";
 
 export default function SamplePad({ sample, button }) {
   const audioSamples = useSamplerStore((state) => state.audioSamples);
@@ -73,12 +74,13 @@ export default function SamplePad({ sample, button }) {
 
   return (
     <div>
-      <button
-        className="sample-pad"
+      <Button
+        height="8em"
+        width="8em"
         onClick={playSample}
         onDragOver={(event) => handleDragOverSample(event)}
         onDrop={(event) => handleDropSample(event, sample)}
-      ></button>
+      ></Button>
     </div>
   );
 }
