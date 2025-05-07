@@ -1,4 +1,4 @@
-* {
+/* * {
   font-family: Helvetica, sans-serif;
   box-sizing: border-box;
 }
@@ -8,7 +8,7 @@ h1 {
 li {
   list-style-type: none;
   margin-left: 1em;
-  width: 220px; /* Adjust the width to your desired character limit */
+  width: 220px; 
   word-wrap: break-word;
   margin-left: 1%;
   padding-left: 1.15em;
@@ -44,12 +44,12 @@ li {
   margin-top: 1em;
 }
 .loading-search-results {
-  transition: 2.5s; /* Transition duration */
+  transition: 2.5s; 
   -o-transform: rotate(720deg);
   -ms-transform: rotate(720deg);
   -moz-transform: rotate(720deg);
   -webkit-transform: rotate(720deg);
-  transform: rotate(360deg); /* How many times it'll rotate = degrees÷360 */
+  transform: rotate(360deg); 
 }
 
 .save-wrapper {
@@ -245,4 +245,4 @@ form {
     border-radius: 10px;
     background-color: #555;
     border: 0;
-}
+} */
