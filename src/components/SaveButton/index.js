@@ -2,6 +2,7 @@ import { useSamplerStore } from "../../../stores/useSamplerStore";
 import { useData } from "../../../utils/useData";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import { Button, Group, Input } from "@chakra-ui/react";
 
 export default function SaveButton() {
   const viewSaveButton = useSamplerStore((state) => state.viewSaveButton);
@@ -64,15 +65,13 @@ export default function SaveButton() {
   return !currentPatch ? (
     <>
       <form onSubmit={savePatch} className="save-bar">
-        <input type="text" className="text-field"></input>
-        <button type="submit" className="submit-button">
-          save
-        </button>
+        <Group>
+          <Input type="text"></Input>
+          <Button type="submit">save</Button>
+        </Group>
       </form>
     </>
   ) : (
-    <button onClick={saveChanges} className="save-bar submit-button">
-      save changes
-    </button>
+    <Button onClick={saveChanges}>save changes</Button>
   );
 }
